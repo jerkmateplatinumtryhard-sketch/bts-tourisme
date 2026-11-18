@@ -2948,6 +2948,22 @@ document.getElementById('searchInput').addEventListener('input', function () {
   });
 })();
 
+(() => {
+  const logo = document.querySelector('.sidebar-logo');
+  if (!logo) return;
+  let taps = 0, resetTimer = null;
+  logo.addEventListener('click', () => {
+    taps++;
+    clearTimeout(resetTimer);
+    resetTimer = setTimeout(() => { taps = 0; }, 3500);
+    if (taps >= 7) {
+      taps = 0;
+      clearTimeout(resetTimer);
+      showCourseEgg('maslow');
+    }
+  });
+})();
+
 // ── SEARCH ──
 document.getElementById('searchInput').addEventListener('keydown', function(e) {
   if(e.key !== 'Enter') return;
